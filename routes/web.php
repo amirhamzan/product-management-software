@@ -14,9 +14,9 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth',])->group(function () {
-    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
-    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 });
 
 require __DIR__ . '/settings.php';

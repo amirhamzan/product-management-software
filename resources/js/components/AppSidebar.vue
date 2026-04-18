@@ -5,14 +5,25 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, ChevronsUpDown, Folder, LayoutGrid, ListChecks } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import NavigationMenuLink from './ui/navigation-menu/NavigationMenuLink.vue';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutGrid,
+    },
+    {
+        title: 'Categories',
+        href: '/categories',
+        icon: Folder,
+    },
+    {
+        title: 'Products',
+        href: '/product',
+        icon: ListChecks,
     },
 ];
 
@@ -46,6 +57,8 @@ const footerNavItems: NavItem[] = [
 
         <SidebarContent>
             <NavMain :items="mainNavItems" />
+            <Link class="px-4 flex" :href="route('categories.index')"><Folder class="mr-2"/>Categories</Link>
+            <Link class="px-4 flex" :href="route('products.index')"><ListChecks class="mr-2"/>Products</Link>
         </SidebarContent>
 
         <SidebarFooter>
