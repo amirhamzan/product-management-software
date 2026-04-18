@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // "Implement a Product model with the following fields: ID, Name, Quantity."
+        // Above is requirements taken from attached document
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->integer('quantity')->default(1);
             $table->timestamps();
         });
     }
