@@ -9,8 +9,17 @@ class Category extends Model
 {
     protected $fillable = ['name', 'description'];
 
+    protected $appends = ['formatted_date'];
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    // Formatting the date to human readable language
+    // Access using formatted_date
+    public function getFormattedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }

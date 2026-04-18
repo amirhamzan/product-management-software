@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::latest()->get();
 
         return Inertia::render('categories/Index', [
             'categories' => $categories,
