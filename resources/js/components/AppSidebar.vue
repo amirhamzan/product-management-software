@@ -56,9 +56,10 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
-            <Link class="px-4 flex" :href="route('categories.index')"><Folder class="mr-2"/>Categories</Link>
-            <Link class="px-4 flex" :href="route('products.index')"><ListChecks class="mr-2"/>Products</Link>
+            <!-- <NavMain :items="mainNavItems" /> -->
+            <Link class="p-4 flex" :href="route('dashboard')"><LayoutGrid class="mr-2"/>Dashboard</Link>
+            <Link class="p-4 flex" :href="route('categories.index')"><Folder class="mr-2"/>Categories</Link>
+            <Link class="p-4 flex" :href="route('products.index')"><ListChecks class="mr-2"/>Products</Link>
         </SidebarContent>
 
         <SidebarFooter>
