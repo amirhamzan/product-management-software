@@ -9,12 +9,21 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category')->latest()->get();
+        $products = Product::with('category')
+            ->when($request->category_id, function ($query, $categoryId) {
+                return $query->where('category_id', $categoryId);
+            })
+            ->latest()
+            ->get();
+
+        $categories = Category::latest()->get();
 
         return Inertia::render('products/Index', [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories,
+            'filters' => $request->only(['category_id']),
         ]);
     }
 
