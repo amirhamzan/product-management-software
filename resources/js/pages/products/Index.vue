@@ -41,6 +41,7 @@ const products = computed(() => page.props.products);
                         <th class="border border-gray-300 ...">ID</th>
                         <th class="border border-gray-300 ...">Product Name</th>
                         <th class="border border-gray-300 ...">Category</th>
+                        <th class="border border-gray-300 ...">Quantity</th>
                         <th class="border border-gray-300 ...">Created At</th>
                     </tr>
                 </thead>
@@ -53,6 +54,7 @@ const products = computed(() => page.props.products);
                             </Link>
                         </td>
                         <td class="border border-gray-300 ...">{{ product.category.name }}</td>
+                        <td class="border border-gray-300 ...">{{ product.quantity }}</td>
                         <td class="border border-gray-300 ...">{{ product.formatted_date }}</td>
                     </tr>
                 </tbody>
