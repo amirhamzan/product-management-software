@@ -44,4 +44,11 @@ class CategoryController extends Controller
             'category' => $category,
         ]);
     }
+
+    public function update(Request $request, Category $category)
+    {
+        $category->update($request->all());
+
+        return to_route('categories.show', $category);
+    }
 }
