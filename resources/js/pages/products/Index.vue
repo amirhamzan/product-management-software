@@ -49,7 +49,7 @@ const products = computed(() => page.props.products);
                         <td class="border border-gray-300 ...">{{ product.id }}</td>
                         <td class="border border-gray-300 ...">{{ product.name }}</td>
                         <td class="border border-gray-300 ...">{{ product.category.name }}</td>
-                        <td class="border border-gray-300 ...">{{ product.created_at }}</td>
+                        <td class="border border-gray-300 ...">{{ product.formatted_date }}</td>
                     </tr>
                 </tbody>
             </table>

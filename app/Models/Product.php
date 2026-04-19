@@ -13,8 +13,17 @@ class Product extends Model
 
     protected $fillable = ['name', 'category_id', 'quantity'];
 
+    protected $appends = ['formatted_date'];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // Formatting the date to human readable language
+    // Access using formatted_date
+    public function getFormattedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }
