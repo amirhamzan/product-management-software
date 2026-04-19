@@ -46,7 +46,11 @@ const categories = computed(() => page.props.categories);
                 <tbody>
                     <tr v-for="category in categories">
                         <td class="border border-gray-300 ...">{{ category.id }}</td>
-                        <td class="border border-gray-300 ...">{{ category.name }}</td>
+                        <td class="border border-gray-300 ...">
+                            <Link class="underline" :href="route('categories.show', category)">
+                                {{ category.name }}
+                            </Link>
+                        </td>
                         <td class="border border-gray-300 ...">{{ category.description }}</td>
                         <td class="border border-gray-300 ...">{{ category.formatted_date }}</td>
                     </tr>

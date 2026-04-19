@@ -30,4 +30,18 @@ class CategoryController extends Controller
 
         return to_route('categories.index');
     }
+
+    public function show(Category $category)
+    {
+        return Inertia::render('categories/Show', [
+            'category' => $category,
+        ]);
+    }
+
+    public function edit(Category $category)
+    {
+        return Inertia::render('categories/Edit', [
+            'category' => $category,
+        ]);
+    }
 }
