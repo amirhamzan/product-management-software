@@ -43,4 +43,11 @@ class ProductController extends Controller
             'product' => $product,
         ]);
     }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return to_route('products.index')->with('flash.banner', 'The item successfully deleted!');
+    }
 }

@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 defineProps<{
@@ -25,6 +25,12 @@ const form = useForm({
 const page = usePage();
 
 const product = computed(() => page.props.product);
+
+function deleteItem(product: any) {
+    if (confirm('Are you sure you want to delete this item?')) {
+        router.delete(route('products.destroy', product), {});
+    }
+}
 </script>
 
 <template>
@@ -35,7 +41,8 @@ const product = computed(() => page.props.product);
             <div class="">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-base/7 font-semibold text-gray-900">ID: {{ product.id }}, {{ product.name }}</h2>
+                        <h2 class="text-base/7 font-semibold text-gray-900">ID: {{ product.id }}, {{ product.name }}
+                        </h2>
                     </div>
                 </div>
                 <div>
@@ -50,9 +57,11 @@ const product = computed(() => page.props.product);
                     </div>
                     <div class="border-b border-gray-900/10 mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="sm:col-span-3">
-                            <label for="category_name" class="block text-sm/6 font-medium text-gray-900">Category Name</label>
+                            <label for="category_name" class="block text-sm/6 font-medium text-gray-900">Category
+                                Name</label>
                             <div class="mt-2">
-                                <input disabled id="category_name" type="text" v-model="product.category.name" autocomplete="off"
+                                <input disabled id="category_name" type="text" v-model="product.category.name"
+                                    autocomplete="off"
                                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
                             </div>
                         </div>
@@ -79,7 +88,7 @@ const product = computed(() => page.props.product);
                         </Link>
                     </div>
                     <div class="mt-5 flex justify-between items-center">
-                        <Button variant="destructive">
+                        <Button @click="deleteItem(product)" variant="destructive">
                             Delete Product
                         </Button>
                     </div>
