@@ -44,6 +44,23 @@ class ProductController extends Controller
         ]);
     }
 
+    public function edit(Product $product)
+    {
+        $categories = Category::latest()->get();
+
+        return Inertia::render('products/Edit', [
+            'product' => $product,
+            'categories' => $categories,
+        ]);
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $product->update($request->all());
+
+        return to_route('products.show', $product);
+    }
+
     public function destroy(Product $product)
     {
         $product->delete();
