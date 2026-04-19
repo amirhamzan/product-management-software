@@ -47,7 +47,11 @@ const products = computed(() => page.props.products);
                 <tbody>
                     <tr v-for="product in products">
                         <td class="border border-gray-300 ...">{{ product.id }}</td>
-                        <td class="border border-gray-300 ...">{{ product.name }}</td>
+                        <td class="border border-gray-300 ...">
+                            <Link class="underline" :href="route('products.show', product)">
+                                {{ product.name }}
+                            </Link>
+                        </td>
                         <td class="border border-gray-300 ...">{{ product.category.name }}</td>
                         <td class="border border-gray-300 ...">{{ product.formatted_date }}</td>
                     </tr>

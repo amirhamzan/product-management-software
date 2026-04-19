@@ -34,4 +34,13 @@ class ProductController extends Controller
 
         return to_route('products.index');
     }
+
+    public function show(Product $product)
+    {
+        $product->load('category');
+
+        return Inertia::render('products/Show', [
+            'product' => $product,
+        ]);
+    }
 }
