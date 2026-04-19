@@ -51,4 +51,11 @@ class CategoryController extends Controller
 
         return to_route('categories.show', $category);
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return to_route('categories.index')->with('flash.banner', 'The item successfully deleted!');
+    }
 }

@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 defineProps<{
@@ -24,6 +24,12 @@ const form = useForm({
 const page = usePage();
 
 const category = computed(() => page.props.category);
+
+function deleteItem(category: any) {
+    if (confirm('Are you sure you want to delete this item?')) {
+        router.delete(route('categories.destroy', category), {});
+    }
+}
 </script>
 
 <template>
@@ -88,6 +94,11 @@ const category = computed(() => page.props.category);
                                 <button>Back to list of categories</button>
                             </Button>
                         </Link>
+                    </div>
+                    <div class="mt-5 flex justify-between items-center">
+                        <Button @click="deleteItem(category)" variant="destructive">
+                            Delete Category
+                        </Button>
                     </div>
                 </div>
             </div>
