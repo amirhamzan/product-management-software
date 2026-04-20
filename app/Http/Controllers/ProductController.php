@@ -11,11 +11,14 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
+        $sortField = $request->input('sort_by', 'id');
+        $direction = $request->input('direction', 'desc');
+
         $products = Product::with('category')
             ->when($request->category_id, function ($query, $categoryId) {
                 return $query->where('category_id', $categoryId);
             })
-            ->latest()
+            ->orderBy($sortField, $direction)
             ->get();
 
         $categories = Category::latest()->get();
@@ -23,7 +26,7 @@ class ProductController extends Controller
         return Inertia::render('products/Index', [
             'products' => $products,
             'categories' => $categories,
-            'filters' => $request->only(['category_id']),
+            'filters' => $request->only(['category_id', 'sort_by', 'direction']),
         ]);
     }
 

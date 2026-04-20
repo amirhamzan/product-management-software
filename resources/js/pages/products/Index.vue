@@ -5,9 +5,16 @@ import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import { Button } from '@/components/ui/button';
 import { computed, watch } from 'vue';
 
-
-defineProps<{
+// Combine all props into one definition
+const props = defineProps<{
     name?: string;
+    products: any;      // Better: Replace 'any' with your Product interface
+    categories: any[];  // Better: Replace 'any' with Category interface
+    filters: {
+        category_id?: number | null;
+        sort_by?: string;
+        direction?: 'asc' | 'desc';
+    };
 }>();
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -32,6 +39,22 @@ watch(() => form.selected_category, (value) => {
         replace: true
     });
 });
+
+const sort = (field: string) => {
+    // If we click the same field, flip the direction. Otherwise, default to 'asc'.
+    let direction = props.filters.direction === 'asc' ? 'desc' : 'asc';
+
+    // If clicking a new field, start with 'asc'
+    if (props.filters.sort_by !== field) {
+        direction = 'asc';
+    }
+
+    router.get(route('products.index'), {
+        ...props.filters, // Keep existing category filters
+        sort_by: field,
+        direction: direction
+    }, { preserveState: true });
+};
 </script>
 
 <template>
@@ -58,12 +81,36 @@ watch(() => form.selected_category, (value) => {
             </div>
             <table class="table-auto border border-gray-400">
                 <thead>
-                    <tr>
-                        <th class="border border-gray-300 ...">ID</th>
-                        <th class="border border-gray-300 ...">Product Name</th>
-                        <th class="border border-gray-300 ...">Category</th>
-                        <th class="border border-gray-300 ...">Quantity</th>
-                        <th class="border border-gray-300 ...">Created At</th>
+                    <tr class="bg-gray-100">
+                        <th @click="sort('id')" class="cursor-pointer border border-gray-300 p-2 hover:bg-gray-200">
+                            ID
+                            {{
+                                (!filters.sort_by || filters.sort_by === 'id')
+                                    ? (filters.direction === 'asc' ? '↑' : '↓')
+                                    : ''
+                            }}
+                        </th>
+                        <th @click="sort('name')" class="cursor-pointer border border-gray-300 p-2 hover:bg-gray-200">
+                            Product Name {{ filters.sort_by === 'name' ? (filters.direction === 'asc' ? '↑' : '↓') : ''
+                            }}
+                        </th>
+                        <!-- <th class="border border-gray-300 p-2">Category</th> -->
+                        <th @click="sort('category_id')"
+                            class="cursor-pointer border border-gray-300 p-2 hover:bg-gray-200">
+                            Category {{ filters.sort_by === 'category_id' ? (filters.direction === 'asc' ? '↑' : '↓') :
+                                ''
+                            }}
+                        </th>
+                        <th @click="sort('quantity')"
+                            class="cursor-pointer border border-gray-300 p-2 hover:bg-gray-200">
+                            Quantity {{ filters.sort_by === 'quantity' ? (filters.direction === 'asc' ? '↑' : '↓') : ''
+                            }}
+                        </th>
+                        <th @click="sort('created_at')"
+                            class="cursor-pointer border border-gray-300 p-2 hover:bg-gray-200">
+                            Created At {{ filters.sort_by === 'created_at' ? (filters.direction === 'asc' ? '↑' : '↓') :
+                                '' }}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
