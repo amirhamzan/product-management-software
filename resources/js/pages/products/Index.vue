@@ -70,7 +70,7 @@ const sort = (field: string) => {
                     </Button>
                 </Link>
             </div>
-            <div class="my-5 flex">
+            <div class="my-5 flex items-center">
                 <h1>Select category:</h1>
                 <select id="category_id" v-model="form.selected_category">
                     <option :value="null">All Categories</option>
@@ -78,6 +78,13 @@ const sort = (field: string) => {
                         {{ category.name }}
                     </option>
                 </select>
+                <Link
+                    v-if="route().current() !== 'products.index' || Object.values(filters).some(v => v !== null && v !== 'id' && v !== 'desc')"
+                    class="ml-5" :href="route('products.index')">
+                    <Button variant="outline" size="sm">
+                        <button>Clear search</button>
+                    </Button>
+                </Link>
             </div>
             <table class="table-auto border border-gray-400">
                 <thead>
