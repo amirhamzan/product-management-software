@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -10,7 +12,14 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'stats' => [
+            'total_products' => Product::count(),
+            'total_categories' => Category::count(),
+            'low_stock' => Product::where('quantity', '<', 10)->count(),
+        ],
+        'recent_products' => Product::with('category')->latest()->take(5)->get(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth',])->group(function () {
@@ -29,7 +38,6 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-
 });
 
 require __DIR__ . '/settings.php';
