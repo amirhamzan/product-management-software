@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,8 +18,17 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $category = Category::inRandomOrder()->first();
+
+        // Generates something like 'AX83' 
+        // ?? = two random uppercase letters, ## = two random numbers
+        $sku = fake()->bothify('??##');
+
         return [
-            //
+            // Result: "AX83 Laptop" or "QY12 Monitor"
+            'name' => strtoupper($sku) . ' ' . $category->name,
+            'category_id' => $category->id,
+            'quantity' => fake()->numberBetween(50, 1500),
         ];
     }
 }
