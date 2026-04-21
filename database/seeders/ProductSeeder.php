@@ -13,6 +13,14 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(1000)->create();
+        Product::factory(10000)->make()->each(function ($product) {
+            Product::firstOrCreate(
+                ['name' => $product->name],
+                [
+                    'category_id' => $product->category_id,
+                    'quantity' => $product->quantity
+                ]
+            );
+        });
     }
 }
