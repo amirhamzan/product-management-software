@@ -70,6 +70,10 @@ export default {
                     border: 'hsl(var(--sidebar-border))',
                     ring: 'hsl(var(--sidebar-ring))',
                 },
+                brand: {
+                    blue: '#006391',
+                    yellow: '#FFB300',
+                },
             },
         },
     },
