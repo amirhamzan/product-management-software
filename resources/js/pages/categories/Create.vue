@@ -19,6 +19,15 @@ const form = useForm({
     name: null,
     description: null,
 });
+
+const submitForm = () => {
+    form.post(route('categories.store'), {
+        onError: (errors) => {
+            console.log("Validation failed:", errors);
+        },
+        onSuccess: () => form.reset(),
+    });
+};
 </script>
 
 <template>
@@ -33,7 +42,7 @@ const form = useForm({
                         <p class="mt-1 text-sm/6 text-gray-600">Use a unique category name.</p>
                     </div>
                 </div>
-                <form @submit.prevent="form.post(route('categories.store'))">
+                <form @submit.prevent="submitForm">
                     <div class="border-b border-gray-900/10 mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="sm:col-span-3">
                             <label for="name" class="block text-sm/6 font-medium text-gray-900">Category Name</label>
