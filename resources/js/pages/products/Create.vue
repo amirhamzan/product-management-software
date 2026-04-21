@@ -25,6 +25,15 @@ const form = useForm({
 const page = usePage();
 
 const categories = computed(() => page.props.categories);
+
+const submitForm = () => {
+    form.post(route('products.store'), {
+        onError: (errors) => {
+            console.log("Validation failed:", errors);
+        },
+        onSuccess: () => form.reset(),
+    });
+};
 </script>
 
 <template>
@@ -39,13 +48,16 @@ const categories = computed(() => page.props.categories);
                         <p class="mt-1 text-sm/6 text-gray-600">Use a unique category name.</p>
                     </div>
                 </div>
-                <form @submit.prevent="form.post(route('products.store'))">
+                <form @submit.prevent="submitForm">
                     <div class="border-b border-gray-900/10 mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="sm:col-span-3">
                             <label for="name" class="block text-sm/6 font-medium text-gray-900">Product Name</label>
                             <div class="mt-2">
                                 <input required id="name" type="text" v-model="form.name" autocomplete="off"
                                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+                                <p v-if="form.errors.name" class="mt-1 text-sm text-red-600">
+                                    {{ form.errors.name }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -60,6 +72,9 @@ const categories = computed(() => page.props.categories);
                                         {{ category.name }}
                                     </option>
                                 </select>
+                                <p v-if="form.errors.category_id" class="mt-1 text-sm text-red-600">
+                                    {{ form.errors.category_id }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -69,6 +84,9 @@ const categories = computed(() => page.props.categories);
                             <div class="mt-2">
                                 <input id="quantity" min="1" type="number" v-model="form.quantity" autocomplete="off"
                                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+                                <p v-if="form.errors.quantity" class="mt-1 text-sm text-red-600">
+                                    {{ form.errors.quantity }}
+                                </p>
                             </div>
                         </div>
                     </div>

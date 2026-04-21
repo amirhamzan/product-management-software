@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -39,12 +40,11 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        // dd($request->all());
         $product = Product::create($request->all());
 
-        return to_route('products.index');
+        return to_route('products.show', $product);
     }
 
     public function show(Product $product)
