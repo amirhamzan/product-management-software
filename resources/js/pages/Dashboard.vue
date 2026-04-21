@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
 import { Package, Folder, AlertTriangle, ArrowRight } from 'lucide-vue-next';
 
@@ -73,8 +73,8 @@ const props = defineProps<{
                     <h3 class="font-bold text-neutral-800">Recently Added Products</h3>
                     <Link :href="route('products.index')"
                         class="text-sm text-brand-blue font-medium flex items-center hover:underline">
-                    View All
-                    <ArrowRight class="ml-1 size-4" />
+                        View All
+                        <ArrowRight class="ml-1 size-4" />
                     </Link>
                 </div>
 
@@ -106,7 +106,7 @@ const props = defineProps<{
                                 <td class="px-6 py-4 text-right">
                                     <Link :href="route('products.show', product)"
                                         class="text-brand-blue hover:text-blue-800 font-medium">
-                                    Details
+                                        Details
                                     </Link>
                                 </td>
                             </tr>
