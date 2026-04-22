@@ -107,9 +107,9 @@ const rightNavItems: NavItem[] = [
                     </Sheet>
                 </div>
 
-                <Link :href="route('dashboard')" class="flex items-center gap-x-2">
+                <div class="flex items-center gap-x-2">
                     <AppLogo class="hidden h-6 xl:block" />
-                </Link>
+                </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden h-full lg:flex lg:flex-1">

@@ -26,24 +26,11 @@ const mainNavItems: NavItem[] = [
         icon: ListChecks,
     },
 ];
-
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
-    },
-];
 </script>
 
 <template>
     <Sidebar collapsible="icon" variant="inset">
-        <SidebarHeader>
+        <SidebarHeader class="bg-brand-blue">
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
@@ -55,15 +42,44 @@ const footerNavItems: NavItem[] = [
             </SidebarMenu>
         </SidebarHeader>
 
-        <SidebarContent>
-            <!-- <NavMain :items="mainNavItems" /> -->
-            <Link class="p-4 flex" :href="route('dashboard')"><LayoutGrid class="mr-2"/>Dashboard</Link>
-            <Link class="p-4 flex" :href="route('categories.index')"><Folder class="mr-2"/>Categories</Link>
-            <Link class="p-4 flex" :href="route('products.index')"><ListChecks class="mr-2"/>Products</Link>
+        <SidebarContent class="bg-neutral-100 px-3 py-4">
+            <div class="space-y-1">
+                <Link :href="route('dashboard')" :class="[
+                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group',
+                    route().current('dashboard')
+                        ? 'bg-white text-brand-blue shadow-sm border border-neutral-200'
+                        : 'text-neutral-600 hover:bg-neutral-200/50 hover:text-brand-blue'
+                ]">
+                    <LayoutGrid
+                        :class="['size-5', route().current('dashboard') ? 'text-brand-blue' : 'text-brand-blue group-hover:text-brand-blue']" />
+                    <span>Dashboard</span>
+                </Link>
+
+                <Link :href="route('categories.index')" :class="[
+                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group',
+                    route().current('categories.*')
+                        ? 'bg-white text-brand-blue shadow-sm border border-neutral-200'
+                        : 'text-neutral-600 hover:bg-neutral-200/50 hover:text-brand-blue'
+                ]">
+                    <Folder
+                        :class="['size-5', route().current('categories.*') ? 'text-brand-blue' : 'text-brand-blue group-hover:text-brand-blue']" />
+                    <span>Categories</span>
+                </Link>
+
+                <Link :href="route('products.index')" :class="[
+                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group',
+                    route().current('products.*')
+                        ? 'bg-white text-brand-blue shadow-sm border border-neutral-200'
+                        : 'text-neutral-600 hover:bg-neutral-200/50 hover:text-brand-blue'
+                ]">
+                    <ListChecks
+                        :class="['size-5', route().current('products.*') ? 'text-brand-blue' : 'text-brand-blue group-hover:text-brand-blue']" />
+                    <span>Products</span>
+                </Link>
+            </div>
         </SidebarContent>
 
         <SidebarFooter>
-            <NavFooter :items="footerNavItems" />
             <NavUser />
         </SidebarFooter>
     </Sidebar>
