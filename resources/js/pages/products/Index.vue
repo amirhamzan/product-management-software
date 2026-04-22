@@ -136,7 +136,7 @@ const sort = (field: string) => {
                         <td colspan="5" class="border border-gray-300 p-10 text-center text-gray-500">
                             <div class="flex flex-col items-center justify-center">
                                 <span class="text-lg font-medium">No products found</span>
-                                <p>Try adjusting your category filter or search criteria.</p>
+                                <p>Try adjusting your category filter criteria.</p>
                             </div>
                         </td>
                     </tr>
