@@ -30,7 +30,7 @@ const mainNavItems: NavItem[] = [
 
 <template>
     <Sidebar collapsible="icon" variant="inset">
-        <SidebarHeader class="bg-brand-blue">
+        <SidebarHeader class="bg-brand-yellow">
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
@@ -42,38 +42,38 @@ const mainNavItems: NavItem[] = [
             </SidebarMenu>
         </SidebarHeader>
 
-        <SidebarContent class="bg-neutral-100 px-3 py-4">
+        <SidebarContent class="bg-brand-blue px-3 py-4">
             <div class="space-y-1">
                 <Link :href="route('dashboard')" :class="[
                     'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group',
                     route().current('dashboard')
-                        ? 'bg-white text-brand-blue shadow-sm border border-neutral-200'
-                        : 'text-neutral-600 hover:bg-neutral-200/50 hover:text-brand-blue'
+                        ? 'bg-white/10 text-white shadow-sm'
+                        : 'text-blue-100 hover:bg-white/5 hover:text-white'
                 ]">
                     <LayoutGrid
-                        :class="['size-5', route().current('dashboard') ? 'text-brand-blue' : 'text-brand-blue group-hover:text-brand-blue']" />
+                        :class="['size-5', route().current('dashboard') ? 'text-white' : 'text-blue-200 group-hover:text-white']" />
                     <span>Dashboard</span>
                 </Link>
 
                 <Link :href="route('categories.index')" :class="[
                     'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group',
                     route().current('categories.*')
-                        ? 'bg-white text-brand-blue shadow-sm border border-neutral-200'
-                        : 'text-neutral-600 hover:bg-neutral-200/50 hover:text-brand-blue'
+                        ? 'bg-white/10 text-white shadow-sm'
+                        : 'text-blue-100 hover:bg-white/5 hover:text-white'
                 ]">
                     <Folder
-                        :class="['size-5', route().current('categories.*') ? 'text-brand-blue' : 'text-brand-blue group-hover:text-brand-blue']" />
+                        :class="['size-5', route().current('categories.*') ? 'text-white' : 'text-blue-200 group-hover:text-white']" />
                     <span>Categories</span>
                 </Link>
 
                 <Link :href="route('products.index')" :class="[
                     'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group',
                     route().current('products.*')
-                        ? 'bg-white text-brand-blue shadow-sm border border-neutral-200'
-                        : 'text-neutral-600 hover:bg-neutral-200/50 hover:text-brand-blue'
+                        ? 'bg-white/10 text-white shadow-sm'
+                        : 'text-blue-100 hover:bg-white/5 hover:text-white'
                 ]">
                     <ListChecks
-                        :class="['size-5', route().current('products.*') ? 'text-brand-blue' : 'text-brand-blue group-hover:text-brand-blue']" />
+                        :class="['size-5', route().current('products.*') ? 'text-white' : 'text-blue-200 group-hover:text-white']" />
                     <span>Products</span>
                 </Link>
             </div>
