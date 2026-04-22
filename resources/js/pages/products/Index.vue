@@ -8,8 +8,8 @@ import { computed, watch } from 'vue';
 // Combine all props into one definition
 const props = defineProps<{
     name?: string;
-    products: any;      // Better: Replace 'any' with your Product interface
-    categories: any[];  // Better: Replace 'any' with Category interface
+    products: {};
+    categories: any[];
     filters: {
         category_id?: number | null;
         sort_by?: string;
@@ -41,16 +41,14 @@ watch(() => form.selected_category, (value) => {
 });
 
 const sort = (field: string) => {
-    // If we click the same field, flip the direction. Otherwise, default to 'asc'.
     let direction = props.filters.direction === 'asc' ? 'desc' : 'asc';
 
-    // If clicking a new field, start with 'asc'
     if (props.filters.sort_by !== field) {
         direction = 'asc';
     }
 
     router.get(route('products.index'), {
-        ...props.filters, // Keep existing category filters
+        ...props.filters,
         sort_by: field,
         direction: direction
     }, { preserveState: true });
@@ -121,8 +119,8 @@ const sort = (field: string) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <template v-if="products.length > 0">
-                        <tr v-for="product in products">
+                    <template v-if="products.data.length > 0">
+                        <tr v-for="product in products.data" :key="product.id">
                             <td class="border border-gray-300 ...">{{ product.id }}</td>
                             <td class="border border-gray-300 ...">
                                 <Link class="underline" :href="route('products.show', product)">
@@ -144,6 +142,32 @@ const sort = (field: string) => {
                     </tr>
                 </tbody>
             </table>
+            <div v-if="products.data.length > 0" class="mt-6">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-700">
+                        Showing
+                        <span class="font-semibold">{{ products.from }}</span>
+                        to
+                        <span class="font-semibold">{{ products.to }}</span>
+                        of
+                        <span class="font-semibold">{{ products.total }}</span>
+                        results
+                    </div>
+
+                    <div v-if="products.links.length > 3" class="flex flex-wrap -mb-1">
+                        <template v-for="(link, key) in products.links" :key="key">
+                            <div v-if="link.url === null"
+                                class="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded"
+                                v-html="link.label" />
+
+                            <Link v-else :href="link.url"
+                                class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-brand-yellow focus:border-brand-blue focus:text-brand-blue transition-all"
+                                :class="{ 'bg-brand-blue text-white hover:bg-brand-blue': link.active }"
+                                v-html="link.label" />
+                        </template>
+                    </div>
+                </div>
+            </div>
         </div>
     </AppLayout>
 </template>

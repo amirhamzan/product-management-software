@@ -21,7 +21,8 @@ class ProductController extends Controller
                 return $query->where('category_id', $categoryId);
             })
             ->orderBy($sortField, $direction)
-            ->get();
+            ->paginate(10)
+            ->withQueryString();
 
         $categories = Category::latest()->get();
 
