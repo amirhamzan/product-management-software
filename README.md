@@ -53,11 +53,15 @@ Migrate all tables
   
 ## Run Application
 
-Run laravel with vite
+To start the development environment, run the following commands in separate terminal windows:
 
-    php artisan serve # terminal 1      
+Start Laravel server
     
-    npm run dev @ npm run build # terminal 2
+    php artisan serve    
+    
+Start Vite development server
+    
+    npm run dev
 
 
 ## Demo Credentials
@@ -66,7 +70,7 @@ Once the app is running and seeded, you can log in with:
 
 Email
 
-    admin@example.com    
+    admin@example.com
 
 Password
 
