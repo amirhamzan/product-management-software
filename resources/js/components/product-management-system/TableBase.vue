@@ -47,8 +47,7 @@ defineProps<{
             </div>
         </div>
 
-        <div v-if="pagination && items.length > 0"
-            class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between px-2">
+        <div v-if="pagination && items.length > 0" class="mt-4 flex flex-col items-end gap-3 px-2">
             <div class="text-sm text-gray-500">
                 Showing
                 <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.from?.toLocaleString() }}</span>
@@ -56,7 +55,8 @@ defineProps<{
                 <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.to?.toLocaleString() }}</span>
                 of
                 <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.total?.toLocaleString()
-                    }}</span> results
+                    }}</span>
+                results
             </div>
 
             <nav v-if="pagination.links.length > 3" class="flex items-center gap-1">
