@@ -143,17 +143,18 @@ const sort = (field: string) => {
                 </tbody>
             </table>
             <div v-if="products.data.length > 0" class="mt-6">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-end mb-4">
                     <div class="text-sm text-gray-700">
                         Showing
-                        <span class="font-semibold">{{ products.from }}</span>
+                        <span class="font-semibold">{{ products.from?.toLocaleString() }}</span>
                         to
-                        <span class="font-semibold">{{ products.to }}</span>
+                        <span class="font-semibold">{{ products.to?.toLocaleString() }}</span>
                         of
-                        <span class="font-semibold">{{ products.total }}</span>
+                        <span class="font-semibold">{{ products.total?.toLocaleString() }}</span>
                         results
                     </div>
-
+                </div>
+                <div class="flex items-center justify-end">
                     <div v-if="products.links.length > 3" class="flex flex-wrap -mb-1">
                         <template v-for="(link, key) in products.links" :key="key">
                             <div v-if="link.url === null"
