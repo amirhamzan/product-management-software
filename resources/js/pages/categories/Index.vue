@@ -43,10 +43,10 @@ const categories = computed(() => page.props.categories);
                 </Link>
             </div>
 
-            <TableBase :headers="['ID', 'Category Name', 'Description', 'Created At']" :items="categories"
+            <TableBase :headers="['ID', 'Category Name', 'Description', 'Created At']" :items="categories.data" :pagination="categories"
                 empty-text="No categories found">
                 <template #rows>
-                    <tr v-for="category in categories" :key="category.id"
+                    <tr v-for="category in categories.data" :key="category.id"
                         class="group hover:bg-gray-50/50 dark:hover:bg-[#1E1E1D] transition-colors">
 
                         <td class="px-6 py-4 text-sm text-muted-foreground">#{{ category.id }}</td>

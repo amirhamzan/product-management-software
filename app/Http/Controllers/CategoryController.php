@@ -10,12 +10,18 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::latest()->get();
+        $sortField = $request->input('sort_by', 'id');
+        $direction = $request->input('direction', 'desc');
+
+        $categories = Category::orderBy($sortField, $direction)
+            ->paginate(10)
+            ->withQueryString();
 
         return Inertia::render('categories/Index', [
             'categories' => $categories,
+            'filters' => $request->only(['sort_by', 'direction']),
         ]);
     }
 
