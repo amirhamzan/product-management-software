@@ -92,7 +92,7 @@ function deleteItem(category: any) {
                             </Link>
                             <Link :href="route('categories.index')">
                                 <Button variant="outline">
-                                    <button>Back to list of categories</button>
+                                    <button>Return to list of categories</button>
                                 </Button>
                             </Link>
                         </div>

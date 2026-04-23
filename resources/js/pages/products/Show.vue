@@ -84,7 +84,7 @@ function deleteItem(product: any) {
                             </Link>
                             <Link :href="route('products.index')">
                                 <Button variant="outline">
-                                    <button>Back to list of products</button>
+                                    <button>Return to list of products</button>
                                 </Button>
                             </Link>
                         </div>

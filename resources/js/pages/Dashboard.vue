@@ -4,6 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
 import { Package, Folder, AlertTriangle, ArrowRight } from 'lucide-vue-next';
+import TableBase from '@/components/product-management-system/TableBase.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -69,7 +70,7 @@ const props = defineProps<{
             </div>
 
             <div class="flex-1 rounded-xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
-                <div class="p-5 border-b border-neutral-100 flex justify-between items-center">
+                <div class="p-5 flex justify-between items-center">
                     <h3 class="font-bold text-neutral-800">Recently Added Products</h3>
                     <Link :href="route('products.index')"
                         class="text-sm text-brand-blue font-medium flex items-center hover:underline">
@@ -78,41 +79,46 @@ const props = defineProps<{
                     </Link>
                 </div>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-neutral-50 text-neutral-500 uppercase text-xs">
-                            <tr>
-                                <th class="px-6 py-3 font-semibold">Product Name</th>
-                                <th class="px-6 py-3 font-semibold">Category</th>
-                                <th class="px-6 py-3 font-semibold">Stock</th>
-                                <th class="px-6 py-3 font-semibold text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-neutral-100">
-                            <tr v-for="product in recent_products" :key="product.id"
-                                class="hover:bg-neutral-50/50 transition-colors">
-                                <td class="px-6 py-4 font-medium text-neutral-900">{{ product.name }}</td>
-                                <td class="px-6 py-4">
-                                    <span class="px-2 py-1 bg-neutral-100 rounded text-xs text-neutral-600">
-                                        {{ product.category?.name }}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span
-                                        :class="product.quantity < 10 ? 'text-red-600 font-bold' : 'text-neutral-600'">
-                                        {{ product.quantity }}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <Link :href="route('products.show', product)"
-                                        class="text-brand-blue hover:text-blue-800 font-medium">
-                                        Details
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <TableBase :headers="['Product Name', 'Category', 'Stock', 'Action']" :items="recent_products"
+                    empty-text="No recent products added">
+                    <template #header-cells>
+                        <th
+                            class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap">
+                            Product Name</th>
+                        <th
+                            class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap">
+                            Category</th>
+                        <th
+                            class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap">
+                            Stock</th>
+                    </template>
+
+                    <template #rows>
+                        <tr v-for="product in recent_products" :key="product.id"
+                            class="group hover:bg-gray-50/50 dark:hover:bg-[#1E1E1D] transition-colors">
+
+                            <td class="px-6 py-4 text-sm font-medium text-neutral-900 dark:text-white">
+                                <Link
+                                    class="text-brand-blue hover:text-blue-800 font-medium hover:underline decoration-2 underline-offset-4"
+                                    :href="route('products.show', product)">{{ product.name }}</Link>
+                            </td>
+
+                            <td class="px-6 py-4">
+                                <span
+                                    class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-400/10 dark:text-blue-400">
+                                    {{ product.category?.name }}
+                                </span>
+                            </td>
+
+                            <td class="px-6 py-4 text-sm">
+                                <span
+                                    :class="product.quantity < 10 ? 'text-red-600 font-bold' : 'text-neutral-600 dark:text-gray-400'">
+                                    {{ product.quantity.toLocaleString() }}
+                                </span>
+                            </td>
+                        </tr>
+                    </template>
+                </TableBase>
             </div>
         </div>
     </AppLayout>
