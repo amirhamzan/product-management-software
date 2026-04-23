@@ -43,16 +43,17 @@ const submitForm = () => {
 
         <Head :title="product.name" />
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <div class="">
+            <div class="p-6 rounded-md rounded-xl border border-gray-200 bg-white shadow-sm">
                 <div class="flex justify-between items-center">
                     <div>
                         <h2 class="text-base/7 font-semibold text-gray-900">ID: {{ product.id }}, {{ product.name }}
                         </h2>
+                        <p class="mt-1 text-sm/6 text-gray-600">Make changes to the element.</p>
                     </div>
                 </div>
                 <form @submit.prevent="submitForm">
-                    <div class="border-b border-gray-900/10 mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="sm:col-span-3 border-b border-gray-900/10">
                             <label for="name" class="block text-sm/6 font-medium text-gray-900">Product Name</label>
                             <div class="mt-2">
                                 <input required id="name" type="text" v-model="form.name" autocomplete="off"
@@ -63,12 +64,13 @@ const submitForm = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="border-b border-gray-900/10 mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="sm:col-span-3 border-b border-gray-900/10">
                             <label for="category_id" class="block text-sm/6 font-medium text-gray-900">Category
                                 Name</label>
                             <div class="mt-2">
-                                <select required id="category_id" v-model="form.category_id" class="">
+                                <select required id="category_id" v-model="form.category_id"
+                                    class="block w-full rounded-lg border-gray-300 dark:border-[#262624] dark:bg-[#1C1C1B] text-sm focus:ring-brand-blue focus:border-brand-blue shadow-sm">
                                     <option disabled value="">Please select category</option>
                                     <option v-for="category in categories" :value="category.id">
                                         {{ category.name }}
@@ -80,8 +82,8 @@ const submitForm = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="border-b border-gray-900/10 mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="sm:col-span-3 border-b border-gray-900/10">
                             <label for="quantity" class="block text-sm/6 font-medium text-gray-900">Quantity</label>
                             <div class="mt-2">
                                 <input id="quantity" min="1" type="number" v-model="form.quantity" autocomplete="off"
@@ -92,12 +94,12 @@ const submitForm = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 flex justify-between items-center">
-                        <Button class="mt-4" variant="default">
+                    <div class="flex items-center justify-start gap-10 pt-4">
+                        <Button class="bg-brand-blue hover:bg-blue-700 text-white px-8">
                             <button>Submit</button>
                         </Button>
                         <Link :href="route('products.show', product)">
-                            <Button variant="destructive">
+                            <Button variant="outline">
                                 <button>Cancel update</button>
                             </Button>
                         </Link>
