@@ -33,7 +33,7 @@ const mainNavItems: NavItem[] = [
         <SidebarHeader class="bg-brand-yellow">
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <SidebarMenuButton size="lg" as-child>
+                    <SidebarMenuButton size="lg" as-child class="hover:bg-brand-yellow/80 active:bg-brand-yellow transition-colors">
                         <Link :href="route('dashboard')">
                             <AppLogo />
                         </Link>
