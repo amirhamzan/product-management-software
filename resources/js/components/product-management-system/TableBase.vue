@@ -50,11 +50,11 @@ defineProps<{
         <div v-if="pagination && items.length > 0" class="mt-4 flex flex-col items-end gap-3 px-2">
             <div class="text-sm text-gray-500">
                 Showing
-                <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.from?.toLocaleString() }}</span>
+                <span class="text-gray-900 dark:text-white">{{ pagination.from?.toLocaleString() }}</span>
                 to
-                <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.to?.toLocaleString() }}</span>
+                <span class="text-gray-900 dark:text-white">{{ pagination.to?.toLocaleString() }}</span>
                 of
-                <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.total?.toLocaleString()
+                <span class="text-gray-900 dark:text-white">{{ pagination.total?.toLocaleString()
                     }}</span>
                 results
             </div>
