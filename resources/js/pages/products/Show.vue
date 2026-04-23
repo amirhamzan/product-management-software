@@ -51,7 +51,7 @@ function deleteItem(product: any) {
                             <label for="name" class="block text-sm/6 font-medium text-gray-900">Product Name</label>
                             <div class="mt-2">
                                 <input disabled id="name" type="text" v-model="product.name" autocomplete="off"
-                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 bg-gray-50" />
+                                    class="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 bg-gray-50" />
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ function deleteItem(product: any) {
                             <div class="mt-2">
                                 <input disabled id="category_name" type="text" v-model="product.category.name"
                                     autocomplete="off"
-                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 bg-gray-50" />
+                                    class="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 bg-gray-50" />
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@ function deleteItem(product: any) {
                             <label for="quantity" class="block text-sm/6 font-medium text-gray-900">Quantity</label>
                             <div class="mt-2">
                                 <input disabled id="quantity" type="text" v-model="product.quantity" autocomplete="off"
-                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 bg-gray-50" />
+                                    class="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 bg-gray-50" />
                             </div>
                         </div>
                     </div>
