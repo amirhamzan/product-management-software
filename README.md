@@ -3,7 +3,7 @@
 ## Overview
 This project is a technical assessment designed to evaluate proficiency in modern full-stack development. It implements a robust **Product Management System** capable of handling inventory across various categories with real-time validation and dynamic filtering.
 
-### Key Features
+## Key Features
 * **CRUD Operations:** Full management of Products and Categories.
 * **Relational Mapping:** Strict database relationships between products and their parent categories.
 * **Advanced Filtering:** Server-side pagination, sorting, and category-based filtering using Inertia.js.
@@ -14,6 +14,16 @@ This project is a technical assessment designed to evaluate proficiency in moder
 * **Frontend:** Vue 3 (Composition API) with Inertia.js
 * **Styling:** Tailwind CSS
 * **Database:** SQLite (Zero-config required)
+
+## System Preview
+| Feature | Interface Preview |
+| :--- | :--- |
+| **Welcome** | ![Welcome](public/assets/system-preview/welcome.png) |
+| **Login** | ![Login](public/assets/system-preview/login.png) |
+| **Dashboard** | ![Dashboard](public/assets/system-preview/dashboard.png) |
+| **List of Categories** | ![List of Categories](public/assets/system-preview/categories.index.png) |
+| **List of Products** | ![List of Products](public/assets/system-preview/products.index.png) |
+| **Add Product** | ![Add Product](public/assets/system-preview/products.create.png) |
 
 ## Requirement
 
